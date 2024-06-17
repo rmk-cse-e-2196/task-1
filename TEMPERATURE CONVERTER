@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+void convertTemperature(float temp, char from, char to) {
+    float convertedTemp;
+
+    if (from == 'C') {
+        if (to == 'F') {
+            convertedTemp = (temp * 9/5) + 32;
+        } else if (to == 'K') {
+            convertedTemp = temp + 273.15;
+        } else {
+            printf("Invalid target scale\n");
+            return;
+        }
+    } else if (from == 'F') {
+        if (to == 'C') {
+            convertedTemp = (temp - 32) * 5/9;
+        } else if (to == 'K') {
+            convertedTemp = ((temp - 32) * 5/9) + 273.15;
+        } else {
+            printf("Invalid target scale\n");
+            return;
+        }
+    } else if (from == 'K') {
+        if (to == 'C') {
+            convertedTemp = temp - 273.15;
+        } else if (to == 'F') {
+            convertedTemp = (temp - 273.15) * 9/5 + 32;
+        } else {
+            printf("Invalid target scale\n");
+            return;
+        }
+    } else {
+        printf("Invalid source scale\n");
+        return;
+    }
+
+    printf("Converted Temperature: %.2f %c\n", convertedTemp, to);
+}
+
+int main() {
+    float temp;
+    char from, to;
+
+    printf("Enter the temperature: ");
+    scanf("%f", &temp);
+    printf("Enter the normal scale (C/F/K): ");
+    scanf(" %c", &from);
+    printf("Enter the change scale (C/F/K): ");
+    scanf(" %c", &to);
+
+    convertTemperature(temp, from, to);
+
+    return 0;
+}
